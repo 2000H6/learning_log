@@ -1,0 +1,73 @@
+{% load bootstrap4 %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+    shrink-to-fit=no">
+  <title>Learning Log</title>
+
+  {% bootstrap_css %}
+  {% bootstrap_javascript jquery='full' %}
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+    <!-- 第一部分：左侧品牌名 -->
+    <a class="navbar-brand" href="{% url 'learning_logs:index'%}">Learning Log</a>
+
+    <!-- 第二部分的开头：手机折叠按钮 -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarCollapse" aria-controls="navbarCollapse"
+        aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- 第二部分的主体：折叠区域 -->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <!-- 左侧导航：Topics -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'learning_logs:topics'%}">Topics</a>
+        </li>
+      </ul>
+
+      <!-- 第三部分：右侧导航（用户状态） -->
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <span class="navbar-text">Hello, {{ user.username }}.</span>
+          </li>
+          <li class="nav-item">
+            <!-- ⚠️ 这里我帮你把书上的 <a> 标签替换成了表单提交，防止 405 报错 -->
+            <form method="post" action="{% url 'users:logout' %}" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="nav-link btn btn-link" style="border:none; padding:0;">Log out</button>
+            </form>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:login' %}">Log in</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 主体内容区域 -->
+  <main role="main" class="container">
+    <div class="pb-2 mb-2 border-bottom">
+      {% block page_header %}{% endblock page_header %}
+    </div>
+    <div>
+      {% block content %}{% endblock content %}
+    </div>
+  </main>
+
+</body>
+</html>
