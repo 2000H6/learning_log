@@ -143,3 +143,5 @@ LOGIN_URL = 'users:login'
 
 #(解释：告诉云端服务器，把那些 CSS 样式文件收集到哪里。)
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+CSRF_TRUSTED_ORIGINS = ['https://learning-log-06cef.containers.snapdeploy.app']
