@@ -1,5 +1,5 @@
-# 使用官方 Python 3.11 轻量级镜像
-FROM python:3.11-slim
+# 使用官方 Python 3.12 轻量级镜像
+FROM python:3.12-slim
 
 # 设置环境变量，确保 Python 输出直接打印到终端，不缓冲
 ENV PYTHONUNBUFFERED=1
