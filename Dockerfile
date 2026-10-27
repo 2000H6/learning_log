@@ -27,4 +27,4 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 # 启动 Gunicorn 服务器
-CMD ["gunicorn", "learning_log.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py migrate && gunicorn learning_log.wsgi:application --bind 0.0.0.0:8000"]
