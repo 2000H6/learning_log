@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$ob*v$=tb^36avq@m41-g249lq2b=0oyg6i6&4u+ffye&bs-l*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 #(解释：星号代表允许任何网址访问，这样 Render 的网址才能连进来。)
 ALLOWED_HOSTS = ['*']
